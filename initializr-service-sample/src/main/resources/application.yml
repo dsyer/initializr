@@ -7,6 +7,20 @@ initializr:
         - name: Web
           id: web
           description: Servlet web application with Spring MVC and Tomcat
+    - name: Spring Data JPA
+      content:
+        - id: data-jpa
+          description: Persist data in SQL stores with Java Persistence API using Spring Data and Hibernate.
+          facets:
+            - jpa
+          aliases:
+            - jpa
+          links:
+            - rel: guide
+              href: https://spring.io/guides/gs/accessing-data-jpa/
+              description: Accessing Data with JPA
+            - rel: reference
+              href: https://docs.spring.io/spring-boot/docs/{bootVersion}/reference/htmlsinge/index.html#data.sql.jpa-and-spring-data
   languages:
     - name: Java
       id: java
@@ -18,10 +32,10 @@ initializr:
       id: groovy
       default: false
   javaVersions:
-    - id: 11
+    - id: 17
       default: true
-    - id: 1.8
-      name: 8
+    - id: 11
+      name: 11
       default: false
   packagings:
     - name: Jar
@@ -39,6 +53,14 @@ initializr:
         format: project
       default: true
       action: /starter.zip
+    - name: Maven Build
+      id: maven-build
+      description: Generate a Maven build configuration
+      tags:
+        build: maven
+        format: build
+      default: false
+      action: /pom.xml
     - name: Gradle Project
       id: gradle-project
       description: Generate a Gradle based project archive
@@ -47,3 +69,11 @@ initializr:
         format: project
       default: false
       action: /starter.zip
+    - name: Gradle Build
+      id: gradle-build
+      description: Generate a Gradle build configuration
+      tags:
+        build: gradle
+        format: build
+      default: false
+      action: /build.gradle

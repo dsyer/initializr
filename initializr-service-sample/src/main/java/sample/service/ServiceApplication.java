@@ -25,6 +25,8 @@ import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
  * Sample service application.
@@ -45,6 +47,20 @@ public class ServiceApplication {
 	SpringIoInitializrMetadataUpdateStrategy springIoInitializrMetadataUpdateStrategy(
 			RestTemplateBuilder restTemplateBuilder, ObjectMapper objectMapper) {
 		return new SpringIoInitializrMetadataUpdateStrategy(restTemplateBuilder.build(), objectMapper);
+	}
+
+	@Bean
+	public WebMvcConfigurer corsConfigurer() {
+		return new WebMvcConfigurer() {
+			@Override
+			public void addCorsMappings(CorsRegistry registry) {
+				registry.addMapping("/**")
+					.allowCredentials(true)
+					.allowedOriginPatterns("*")
+					.allowedHeaders("*")
+					.allowedMethods("*");
+			}
+		};
 	}
 
 }

@@ -19,6 +19,8 @@ package io.spring.initializr.web.project;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import org.springframework.util.StringUtils;
 
 /**
@@ -26,35 +28,51 @@ import org.springframework.util.StringUtils;
  *
  * @author Stephane Nicoll
  */
+@Schema(description = "A rqeuest for project generation")
 public class ProjectRequest {
 
+	@Schema(description = "The dependencies of the project. See /dependencies endpoint for more detail.",
+			example = "web, data-jpa")
 	private List<String> dependencies = new ArrayList<>();
 
+	@Schema(description = "The name of the project", example = "demo")
 	private String name;
 
+	@Schema(description = "The type of the project", example = "maven-project")
 	private String type;
 
+	@Schema(description = "The description of the project", example = "Demo project for Spring Boot")
 	private String description;
 
+	@Schema(description = "The group ID of the project", example = "com.example")
 	private String groupId;
 
+	@Schema(description = "The artifact ID of the project", example = "demo")
 	private String artifactId;
 
+	@Schema(description = "The version of the project", example = "0.0.1-SNAPSHOT")
 	private String version;
 
+	@Schema(description = "The Spring Boot version of the project", example = "3.1.2")
 	private String bootVersion;
 
+	@Schema(description = "The packaging of the project", example = "jar", defaultValue = "jar")
 	private String packaging;
 
+	@Schema(description = "The name of the application", example = "demo")
 	private String applicationName;
 
+	@Schema(description = "The language of the project", example = "java", defaultValue = "java")
 	private String language;
 
+	@Schema(description = "The package name of the project", example = "com.example.demo")
 	private String packageName;
 
+	@Schema(description = "The Java version of the project", example = "17", defaultValue = "17")
 	private String javaVersion;
 
 	// The base directory to create in the archive - no baseDir by default
+	@Schema(description = "The base directory to create in the archive", example = "")
 	private String baseDir;
 
 	public List<String> getDependencies() {
